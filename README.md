@@ -1,5 +1,5 @@
 # GD-Expedite
-GD Expedite is a command line tool designed to expedite leveling, rep/infamy gains, farming, and reroll affixes on rare armor/jewelry from a list.
+GrimDawn Expedite is a command line tool designed to expedite leveling, rep/infamy gains, farming, and reroll affixes on rare armor/jewelry from a list.
 
 Run GDExpLoader -h for more info.
 
