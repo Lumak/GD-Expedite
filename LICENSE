@@ -19,3 +19,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---------------------------------------
+- third party 
+---------------------------------------
+Detour libs
+https://github.com/microsoft/Detours
+MIT License
+
+Item, ItemReplication header files from
+https://github.com/Dingf/GDCommunityLauncher
+MIT License
+
