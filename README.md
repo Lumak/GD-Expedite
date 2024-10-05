@@ -1,2 +1,2 @@
 # GD-Expedite
-Expedite leveling, rep/infamy gains, and farming
+GD Expedite leveling, rep/infamy gains, and farming.
