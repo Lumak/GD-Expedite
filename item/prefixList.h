@@ -312,7 +312,7 @@ const ItemAffix prefixAncient
 //flamewall - shield
 const ItemLvlName FlamewallTable[6]
 {
-	5, "records/items/lootaffixes/prefix/b_sh012.dbr",
+	5, "records/items/lootaffixes/prefix/b_sh012_a.dbr",
 	36, "records/items/lootaffixes/prefix/b_sh012_b.dbr",
 	52, "records/items/lootaffixes/prefix/b_sh012_c.dbr",
 	68, "records/items/lootaffixes/prefix/b_sh012_d.dbr",
@@ -328,7 +328,7 @@ const ItemAffix prefixFlamewall
 //stonehide - shiedl
 const ItemLvlName ShieldStonehide[6]
 {
-	5, "records/items/lootaffixes/prefix/b_sh016.dbr",
+	5, "records/items/lootaffixes/prefix/b_sh016_a.dbr",
 	36, "records/items/lootaffixes/prefix/b_sh016_b.dbr",
 	52, "records/items/lootaffixes/prefix/b_sh016_c.dbr",
 	68, "records/items/lootaffixes/prefix/b_sh016_d.dbr",
@@ -341,11 +341,10 @@ const ItemAffix prefixShieldStonehide
 	Shield, 6, ShieldStonehide
 };
 
-//[18256]  p=records/items/lootaffixes/prefix/b_sh107_d.dbr
 //stonefaced - shield
 const ItemLvlName StonefacedTable[6]
 {
-	5, "records/items/lootaffixes/prefix/b_sh107.dbr",
+	5, "records/items/lootaffixes/prefix/b_sh107_a.dbr",
 	36, "records/items/lootaffixes/prefix/b_sh107_b.dbr",
 	50, "records/items/lootaffixes/prefix/b_sh107_c.dbr",
 	68, "records/items/lootaffixes/prefix/b_sh107_d.dbr",
@@ -361,7 +360,7 @@ const ItemAffix prefixStonefaced
 //keeper's - shield
 const ItemLvlName KeepersTable[6]
 {
-	5, "records/items/lootaffixes/prefix/b_sh002.dbr",
+	5, "records/items/lootaffixes/prefix/b_sh002_a.dbr",
 	36, "records/items/lootaffixes/prefix/b_sh002_b.dbr",
 	50, "records/items/lootaffixes/prefix/b_sh002_c.dbr",
 	66, "records/items/lootaffixes/prefix/b_sh002_d.dbr",
