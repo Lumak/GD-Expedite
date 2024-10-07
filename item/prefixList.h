@@ -172,8 +172,8 @@ const ItemLvlName consecratedTable[6]
 {
 	5, "records/items/lootaffixes/prefix/b_ar015_ar.dbr",
 	36, "records/items/lootaffixes/prefix/b_ar015_ar_b.dbr",
-	50, "records/items/lootaffixes/prefix/b_ar015_ar_c.dbr",
-	66, "records/items/lootaffixes/prefix/b_ar015_ar_d.dbr",
+	52, "records/items/lootaffixes/prefix/b_ar015_ar_c.dbr",
+	68, "records/items/lootaffixes/prefix/b_ar015_ar_d.dbr",
 	82, "records/items/lootaffixes/prefix/b_ar015_ar_e.dbr",
 	92, "records/items/lootaffixes/prefix/b_ar015_ar_f.dbr",
 };

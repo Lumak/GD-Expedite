@@ -60,9 +60,10 @@ void Options::GetOptions(int argc, char *argv[])
 
 void Options::ShowHelp()
 {
-    printf("GDExpLoader -[option n] -[option n] ...\n\n");
+    printf("GDExpLoader [-option n] [-option n] ... [-option n]\n\n");
     printf("calling GDExpLoader will only load the dll once, all subsequent commands call an export fn\n");
     printf("by default all stackable items > 1 dropped will be doubled\n");
+    printf("to change affixes on a gear or swap it out, drop the gear\n");
     printf("  -x n\t/experience gain multiplier n\n");
     printf("  \t/n=0 zero gain\n");
 
@@ -81,5 +82,6 @@ void Options::ShowHelp()
     printf("  \t/n=1 change suffix of an item dropped from a list\n");
 
     printf("  -h,-?\t/this help output\n");
-    printf("to add your own list of affixes or swap list, run DebugView and drop items to capture the record info.\n\n");
+    printf("to add your own list of affixes or swap list, run DebugView and drop items to capture the record info.\n");
+    printf("then go to grimtools to what type of gear the affix applies to and get the level info.\n\n");
 }

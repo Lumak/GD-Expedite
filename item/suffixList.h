@@ -70,7 +70,7 @@ const ItemLvlName ofButchery[6]
 {
 	5, "records/items/lootaffixes/suffix/b_ar030_je.dbr",
 	30, "records/items/lootaffixes/suffix/b_ar030_je_b.dbr",
-	41, "records/items/lootaffixes/suffix/b_ar030_je_c.dbr",
+	51, "records/items/lootaffixes/suffix/b_ar030_je_c.dbr",
 	70, "records/items/lootaffixes/suffix/b_ar030_je_d.dbr",
 	82, "records/items/lootaffixes/suffix/b_ar030_je_e.dbr",
 	92, "records/items/lootaffixes/suffix/b_ar030_je_f.dbr",
