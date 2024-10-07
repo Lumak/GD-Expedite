@@ -83,5 +83,5 @@ void Options::ShowHelp()
 
     printf("  -h,-?\t/this help output\n");
     printf("to add your own list of affixes or swap list, run DebugView and drop items to capture the record info.\n");
-    printf("then go to grimtools to what type of gear the affix applies to and get the level info.\n\n");
+    printf("then go to grimtools to see the type of gear the affix applies to and get the level info.\n\n");
 }
