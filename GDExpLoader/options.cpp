@@ -63,7 +63,7 @@ void Options::ShowHelp()
     printf("GDExpLoader [-option n] [-option n] ... [-option n]\n\n");
     printf("calling GDExpLoader will only load the dll once, all subsequent commands call an export fn\n");
     printf("by default all stackable items > 1 dropped will be doubled\n");
-    printf("to change affixes on a gear or swap it out, drop the gear\n");
+    printf("to change affixes on a gear or swap it out, drop the gear on the ground\n");
     printf("  -x n\t/experience gain multiplier n\n");
     printf("  \t/n=0 zero gain\n");
 
