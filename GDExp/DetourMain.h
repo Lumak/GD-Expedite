@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <map>
+#include <string>
+#include "Mutex.h"
 
 //=============================================================================
 //=============================================================================
@@ -37,7 +39,6 @@
 #define SYM_CHAR_GETCHARLEVEL "?GetCharLevel@Character@GAME@@QBE?BIXZ"
 //public: unsigned int const __cdecl GAME::Character::GetCharLevel(void)const __ptr64
 #define SYM_OBJECT_GETOBJECTNAME "?GetObjectName@Object@GAME@@QBEPBDXZ"
-
 #endif
 
 //=============================================================================
@@ -117,18 +118,18 @@ public:
     static void Close();
 
     static DetourMain& GetInstance(){ return *sDetourMain_; }
-
-	void CharAdjustReceiveExp(unsigned int &adjustVal);
 	void SetOption(int val[]);
-	void FactionAdjustValue(float &val);
-	void ItemOnDropped(void* This, void* charPtr);
-	void ItemGetItemReplicaInfo(void* This, unsigned int &refItemRep);
-	bool ItemCreateItem(unsigned int&);
 
 private:
     bool SetupDetour();
     int HookDetour(DetourFnData &detourData);
     void SetError(const char *err);
+
+	void CharAdjustReceiveExp(unsigned int &adjustVal);
+	void FactionAdjustValue(float &val);
+	void ItemOnDropped(void* This, void* charPtr);
+	void ItemGetItemReplicaInfo(void* This, unsigned int &refItemRep);
+    bool ItemCreateItem(unsigned int&);
 	void GetObjectName(void* obj, std::string &name);
 
 public:
@@ -139,7 +140,7 @@ public:
 	static void __fastcall DTItemOnDropped(VoidArg, void*);
 	static void __fastcall DTItemGetItemReplicaInfo(VoidArg, unsigned int&);
 	static void* __cdecl DTItemCreateItem(unsigned int&);
-  
+
 private:
     // static vars
     static DetourMain *sDetourMain_;
@@ -164,7 +165,8 @@ private:
     static ThisFunc<void, void*, unsigned int&> fnItemGetItemReplicaInfo_;
     static CdeclFunc<void*, unsigned int&> fnFnItemCreateItem_;
 	static ThisFunc<unsigned int, void*> fnCharGetCharLevel_;
-	static ThisFunc<char const*, void*> fnObjectGetObjectName_;
+    static ThisFunc<char const*, void*> fnObjectGetObjectName_;
+
 };
 
 

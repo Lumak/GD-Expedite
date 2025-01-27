@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "common.h"
 
 class Options
@@ -12,6 +13,7 @@ public:
         oneDropDupe = TYPE_DEFAULT_VALUE;
         prefixChange = TYPE_DEFAULT_VALUE;
         suffixChange = TYPE_DEFAULT_VALUE;
+        affixTypeList.clear();
     }
 
     void GetOptions(int argc, char *argv[]);
@@ -24,4 +26,5 @@ public:
     int oneDropDupe;
     int prefixChange;
     int suffixChange;
+    std::vector<int> affixTypeList;
 };

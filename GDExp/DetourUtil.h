@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <dbghelp.h>
+
 #include "Logger.h"
 
 //=============================================================================
@@ -9,6 +11,7 @@ namespace DetourUtil
   char *WStr2CharStr(const char *format, ...);
   void DumpHex(unsigned int *ptr, int len);
   bool MemValidity(void *memPtr);
+  void GetBackTrace();
 
   template<class T>
   void VectorMemoryToVector0(unsigned int addr, std::vector<T> &vec)

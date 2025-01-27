@@ -69,6 +69,38 @@ namespace DetourUtil
         return (valid && info.Protect == PAGE_READWRITE && info.State == MEM_COMMIT);
     }
 
+    void GetBackTrace()
+    {
+#ifdef INC_BACKTRACE
+        LOGF("  -- BackTrace --\n");
+
+        const int maxFrames = MAX_TRACE_DEPTH;
+        const int maxFnNameLen = MAX_FNNAME_LEN;
+        void *stack[maxFrames];
+
+        char symBuff[sizeof(SYMBOL_INFO) + maxFnNameLen * sizeof(TCHAR)];
+        SYMBOL_INFO *symbol = (PSYMBOL_INFO)symBuff;
+        symbol->MaxNameLen = maxFnNameLen;
+        symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
+
+        HANDLE proc = GetCurrentProcess();
+        WORD numFrames = CaptureStackBackTrace(0, maxFrames, stack, NULL);
+        SymInitialize(proc, NULL, TRUE);
+
+        for (unsigned i = 0; i < numFrames; ++i)
+        {
+            DWORD64 addr = (DWORD64)stack[i];
+
+            if (SymFromAddr(proc, addr, NULL, symbol))
+            {
+                std::stringstream stream;
+                stream << "\t" << std::hex << symbol->Address << " - " << symbol->Name << std::endl;
+                std::string str = stream.str();
+                LOGF("%s", str.c_str());
+            }
+        }
+#endif
+    }
 
 }
 

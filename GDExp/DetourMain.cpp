@@ -116,7 +116,7 @@ bool DetourMain::SetupDetour()
 	status += HookDetour(datGetObjectName);
 	fnObjectGetObjectName_.SetFn(datGetObjectName.realFn_);
 
-	if (status != 0)
+    if (status != 0)
     {
         SetError("Error in DetourMain::SetupDetour()");
     }
@@ -212,6 +212,10 @@ void DetourMain::SetOption(int val[])
 		suffixChange_ = val[1];
 		LOGF("  suffix change=%d\n", suffixChange_);
 		break;
+
+    case TYPE_AFFIX_TYPE:
+        ItemMethods::ModifyAffixType(val[1]);
+        break;
 	}
 }
 
@@ -352,7 +356,6 @@ void DetourMain::GetObjectName(void* obj, std::string &name)
 		name = " ";
 	}
 }
-
 
 //==============================================================
 // dll export fn

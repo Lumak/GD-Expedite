@@ -13,7 +13,6 @@ const ItemArray alkamosSet1 =
 {
 	15, 1, alkamosRing1
 };
-
 //alkamos ring 2 id = 16, pass in args: -p 16
 const ItemArray alkamosSet2 =
 {

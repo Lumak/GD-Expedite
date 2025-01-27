@@ -11,7 +11,7 @@
 
 #define MAJVERSION  1
 #define MINVERSION  2
-#define MAJPATCH    1
+#define MAJPATCH    2
 
 BOOL is64BitProcess = FALSE;
 std::wstring expdllName = GDEXPDLL;
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
 	DWORD dwProcessId = 0;
 	bool hideConsole = false;
 
-    printf("GD expedite v%d.%d.%d, (c) 2024\n", MAJVERSION, MINVERSION, MAJPATCH);
+    printf("GD expedite v%d.%d.%d (c) 2025\n", MAJVERSION, MINVERSION, MAJPATCH);
 
 	//init and get options
     Options options;
@@ -273,6 +273,14 @@ int main(int argc, char *argv[])
 			printf("suffix change option=%d\n", options.suffixChange);
 			CallRemoteExportFn(dwProcessId, remoteProcAddr, is64BitProcess, TYPE_SUFFIX_CHANGE, options.suffixChange);
 		}
+        if (options.affixTypeList.size() > 0)
+        {
+            for (unsigned i = 0; i < options.affixTypeList.size(); ++i)
+            {
+                printf("damage type change=%d\n", options.affixTypeList[i]);
+                CallRemoteExportFn(dwProcessId, remoteProcAddr, is64BitProcess, TYPE_AFFIX_TYPE, options.affixTypeList[i]);
+            }
+        }
 	}
 
 	return 0;

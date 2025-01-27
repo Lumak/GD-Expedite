@@ -53,6 +53,10 @@ void Options::GetOptions(int argc, char *argv[])
                 {
                     suffixChange = atoi(strPtr);
                 }
+                else if (option == 't')
+                {
+                    affixTypeList.push_back(atoi(strPtr));
+                }
             }
         }
     }
@@ -72,16 +76,24 @@ void Options::ShowHelp()
     printf("  -e n\t/enemy infamy gain multiplier n\n");
     printf("  \t/n=0 zero gain\n");
 
-    printf("  -p n\t/prefix n=-1 remove prefix from an item dropped\n");
+    printf("  -p n\t/prefix n=1 change prefix of an item from prefix table list, see -t option\n");
     printf("  \t/n=0 do nothing\n");
-    printf("  \t/n=1 change prefix of an item dropped from a list\n");
+    printf("  \t/n=-1 remove prefix\n");
     printf("  \t/n>1 swapId, swap item dropped with an item in the list\n");
     
-    printf("  -s n\t/suffix n=-1 remove suffix from an item dropped\n");
+    printf("  -s n\t/suffix n=1 change suffix of an item from suffix table list, see -t option\n");
     printf("  \t/n=0 do nothing\n");
-    printf("  \t/n=1 change suffix of an item dropped from a list\n");
+    printf("  \t/n=-1 remove suffix\n");
+
+    printf("  -t n\t/include affix type: n=0 reset to general stats (default, always inclusive)\n");
+    printf("  \t/1=cold, 2=fire, 3=lightning, 4=elemental\n");
+    printf("  \t/5=pierce, 6=bleed, 7=chaos, 8=aether\n");
+    printf("  \t/9=vitality, 10=poison/acid, 11=physical, 12=pet type\n");
+    printf("  \t/13=offensive type, 14=defensive type, 15=retaliation type\n");
+    printf("  \t/-n remove the affix type previously set\n");
+    printf("  \t/multiple affix types can be set in a single call, example: GDExpLoader -t 0 -t 1 -t 4 \n  \t -> reset then include cold + elemental\n");
 
     printf("  -h,-?\t/this help output\n");
-    printf("to add your own list of affixes or swap list, run DebugView and drop items to capture the record info.\n");
-    printf("then go to grimtools to see the type of gear the affix applies to and get the level info.\n\n");
+    printf("to add your own list of affixes or a swap list, run DebugView and drop items to capture the record info.\n");
+    printf("then go to grimtools to see the type of gear the affix applies to and its levels\n\n");
 }

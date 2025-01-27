@@ -9,3 +9,4 @@
 #define TYPE_ONEDROP_DUPE		3
 #define TYPE_PREFIX_CHANGE		4
 #define TYPE_SUFFIX_CHANGE		5
+#define TYPE_AFFIX_TYPE         6
