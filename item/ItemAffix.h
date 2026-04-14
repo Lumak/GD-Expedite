@@ -16,6 +16,8 @@ enum PropertyType
     VitalityDamage  = 0x0100,   //9 
     PoisAcidDamage  = 0x0200,   //10
     PhysicalDamage  = 0x0400,   //11
+    AllDamage       = (ColdDamage | FireDamage | LightningDamage | ElementalDamage | PierceDamage | BleedDamage |
+                      ChaosDamage | AetherDamage | VitalityDamage | PoisAcidDamage | PhysicalDamage),
     PetType         = 0x0800,   //12
     OffenseType     = 0x1000,   //13
     DefenseType     = 0x2000,   //14
@@ -119,10 +121,13 @@ enum ItemTypes
     Melee1h     = 0x00000800,
     Melee2h     = 0x00001000,
     Offhand     = 0x00002000,
-    Dagger      = 0x00004000,
-    Scepter     = 0x00008000,
+    Range1h     = 0x00004000,
+    Range2h     = 0x00008000,
 
-    Range1h     = 0x00010000,
-    Range2h     = 0x00020000,
+    Sword1h     = 0x00010000,
+    Axe1h       = 0x00020000,
+    Mace1h      = 0x00040000,
+    Dagger      = 0x00080000,
+    Scepter     = 0x00100000,
 };
 

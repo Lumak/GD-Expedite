@@ -13,6 +13,7 @@ public:
         oneDropDupe = TYPE_DEFAULT_VALUE;
         prefixChange = TYPE_DEFAULT_VALUE;
         suffixChange = TYPE_DEFAULT_VALUE;
+        randSeedChange = TYPE_DEFAULT_VALUE;
         affixTypeList.clear();
     }
 
@@ -26,5 +27,6 @@ public:
     int oneDropDupe;
     int prefixChange;
     int suffixChange;
+    int randSeedChange;
     std::vector<int> affixTypeList;
 };

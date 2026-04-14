@@ -15,6 +15,9 @@ else()
   link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Detours/lib.X86)
 endif()
 
+###conditional lib includes
+set (BACKTRACE OFF)
+
 ### grab files
 file (GLOB SRC_FILES *.cpp *.h )
 source_group ("src" FILES ${SRC_FILES} )
@@ -30,5 +33,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -D_RELEASE")
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES LINK_FLAGS "/ignore:4099")
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/GDExpLoader)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} detours.lib winmm.lib d3dx9d.lib)
+if (BACKTRACE)
+  target_link_libraries(${CMAKE_PROJECT_NAME} detours.lib winmm.lib d3dx9d.lib dbghelp.lib)
+else()
+  target_link_libraries(${CMAKE_PROJECT_NAME} detours.lib winmm.lib d3dx9d.lib)
+endif()
 

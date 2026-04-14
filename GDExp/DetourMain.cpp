@@ -34,7 +34,8 @@ DetourFnData datItemGetItemReplicaInfo = { "game.dll", NULL, (VoidFn)&DetourMain
 DetourFnData datItemCreateItem = { "game.dll", NULL, (VoidFn)&DetourMain::DTItemCreateItem, SYM_ITEM_CREATEITEM };
 DetourFnData datCharGetCharLevel = { "game.dll", NULL, NULL, SYM_CHAR_GETCHARLEVEL };
 DetourFnData datGetObjectName = { "engine.dll", NULL, NULL, SYM_OBJECT_GETOBJECTNAME };
-
+DetourFnData datItemOnPickup = { "game.dll", NULL, (VoidFn)&DetourMain::DTItemOnPickup, SYM_ITEM_ONPICKUP };
+DetourFnData datIncrementStack = { "game.dll", NULL, (VoidFn)&DetourMain::DTItemIncrementStack, SYM_ITEM_INCREMENTSTACK };
 
 ThisFunc<void, void*, unsigned int, unsigned int, bool> DetourMain::fnCharReceiveExp_;
 ThisFunc<void, void*, unsigned int, float, bool> DetourMain::fnFactionAdjustVal_;
@@ -44,7 +45,8 @@ ThisFunc<void, void*, unsigned int&> DetourMain::fnItemGetItemReplicaInfo_;
 ThisFunc<unsigned int, void*> DetourMain::fnCharGetCharLevel_;
 ThisFunc<char const*, void*> DetourMain::fnObjectGetObjectName_;
 CdeclFunc<void*, unsigned int&> DetourMain::fnFnItemCreateItem_;
-
+ThisFunc<void, void*, void*> DetourMain::fnItemOnPickup_;
+ThisFunc<bool, void*, unsigned int, unsigned int&> DetourMain::fnItemIncrementStack_;
 
 DetourMain *DetourMain::sDetourMain_ = NULL;
 
@@ -79,9 +81,12 @@ DetourMain::DetourMain()
 	oneDropDupe_ = 0;
 	prefixChange_ = 0;
 	suffixChange_ = 0;
+    randSeed_ = 0;
 
 	itemDropped_ = NULL;
 	itemReplica_ = NULL;
+
+    pickedUpItemName_ = "clr";
 }
 
 DetourMain::~DetourMain()
@@ -113,8 +118,14 @@ bool DetourMain::SetupDetour()
 	status += HookDetour(datCharGetCharLevel);
 	fnCharGetCharLevel_.SetFn(datCharGetCharLevel.realFn_);
 
-	status += HookDetour(datGetObjectName);
-	fnObjectGetObjectName_.SetFn(datGetObjectName.realFn_);
+    status += HookDetour(datGetObjectName);
+    fnObjectGetObjectName_.SetFn(datGetObjectName.realFn_);
+
+    status += HookDetour(datItemOnPickup);
+    fnItemOnPickup_.SetFn(datItemOnPickup.realFn_);
+
+    status += HookDetour(datIncrementStack);
+    fnItemIncrementStack_.SetFn(datIncrementStack.realFn_);
 
     if (status != 0)
     {
@@ -216,6 +227,11 @@ void DetourMain::SetOption(int val[])
     case TYPE_AFFIX_TYPE:
         ItemMethods::ModifyAffixType(val[1]);
         break;
+
+    case TYPE_RAND_SEED:
+        randSeed_ = val[1];
+        LOGF("  seed change=%d\n", randSeed_);
+        break;
 	}
 }
 
@@ -264,9 +280,10 @@ bool DetourMain::ItemCreateItem(unsigned int& itemReplica)
 	if (itemReplica_ == &itemReplica)
 	{
 		ItemReplicaInfo *itemRep = (ItemReplicaInfo*)&itemReplica;
-		LOGF("ItemCreateItem: itemReplica=0x%p, count=%u", &itemReplica, itemRep->_itemStackCount );
+		LOGF("ItemCreateItem: itemReplica=0x%p, count=%u, seed=0x%X", &itemReplica, itemRep->_itemStackCount, itemRep->_itemSeed );
 		LOGF("\tn=%s", itemRep->_itemName.c_str());
-		if (!itemRep->_itemPrefix.empty())
+
+        if (!itemRep->_itemPrefix.empty())
 		{
 			LOGF("\tp=%s", itemRep->_itemPrefix.c_str());
 		}
@@ -278,14 +295,24 @@ bool DetourMain::ItemCreateItem(unsigned int& itemReplica)
 		// check stack count
 		if (itemRep->_itemStackCount > 1)
 		{
-			itemRep->_itemStackCount = min(itemRep->_itemStackCount * 2, 1000);
+            //item drop dupe no longer works in 1.3, so we'll do something else
+			//itemRep->_itemStackCount = min(itemRep->_itemStackCount * 2, 1000);
+            status = true;
 		}
 		else
 		{
+            //skip all other funcs if seed change
+            if (randSeed_ == 1)
+            {
+                //there's a max seed value (unknown) but seeds of items dropped seem
+                //to be in the range between 0x1000000 - 0x7ffffff (still uncertain)
+                itemRep->_itemSeed = (uint32_t)rand() % (0x7ffffff - 0x1000000) + 0x1000000;
+                status = true;
+            }
 			//non-zero prefix and suffix take precedence over drop dupe
-			if (prefixChange_ != 0 || suffixChange_ != 0)
+			else if (prefixChange_ != 0 || suffixChange_ != 0)
 			{
-				//prefixChange > 1 means prefixChange = swapId
+				//prefixChange > 1 means swapId
                 if (prefixChange_ > 1)
                 {
                     ItemMethods::SwapItem(prefixChange_, *itemRep);
@@ -302,7 +329,7 @@ bool DetourMain::ItemCreateItem(unsigned int& itemReplica)
 						itemRep->_itemSuffix = "";
 					}
 				}
-				//ignore item sw/o any affix - assume elite or legendary gear
+				//ignore items w/o any affix - assume elite or legendary gear
 				else if (!itemRep->_itemPrefix.empty() || !itemRep->_itemSuffix.empty())
 				{
 					if (prefixChange_ == 1)
@@ -319,11 +346,12 @@ bool DetourMain::ItemCreateItem(unsigned int& itemReplica)
 					LOGF("  no affix found (assume epic or legendary gear), skip");
 				}
 			}
-			else if (oneDropDupe_ == 1)
-			{
-				itemRep->_itemStackCount = 2;
-				status = true;
-			}
+            //this no longer works in 1.3
+			//else if (oneDropDupe_ == 1)
+			//{
+			//	itemRep->_itemStackCount = 2;
+			//	status = true;
+			//}
 		}
 
 		itemDropped_ = NULL;
@@ -331,6 +359,29 @@ bool DetourMain::ItemCreateItem(unsigned int& itemReplica)
 	}
 
 	return status;
+}
+
+void DetourMain::ItemOnPickup(void *item)
+{
+    GetObjectName(item, pickedUpItemName_);
+}
+
+bool DetourMain::ItemIncrementStack(void* This, unsigned int &splitCnt)
+{
+    //see how we get to this point
+    DetourUtil::GetBackTrace();
+
+    //this comparison prevents items picked up to be doubled (to exclude quest items)
+    std::string name;
+    GetObjectName(This, name);
+    if (pickedUpItemName_.compare(name) != 0)
+    {
+        splitCnt = min(splitCnt * 2, 1000);
+    }
+    
+    pickedUpItemName_ = "clr";
+    
+    return true;
 }
 
 void DetourMain::GetObjectName(void* obj, std::string &name)
@@ -368,7 +419,7 @@ void GLSetOption(int val[])
 //==============================================================
 // static detour fns
 //==============================================================
-void DetourMain::DTCharReceiveExp(VoidArg, unsigned int a, unsigned int enumType, bool b)
+void DetourMain::DTCharReceiveExp(ThisArg, unsigned int a, unsigned int enumType, bool b)
 {
 	unsigned int adjusted = a;
 
@@ -382,7 +433,7 @@ void DetourMain::DTCharReceiveExp(VoidArg, unsigned int a, unsigned int enumType
 	}
 }
 
-void DetourMain::DTFactionAdjustValue(VoidArg, unsigned int a, float b, bool c)
+void DetourMain::DTFactionAdjustValue(ThisArg, unsigned int a, float b, bool c)
 {
 	GetInstance().FactionAdjustValue(b);
 
@@ -401,14 +452,14 @@ bool DetourMain::DTCanBePlacedInXferStash(void* This)
 #endif
 }
 
-void DetourMain::DTItemOnDropped(VoidArg, void* charPtr)
+void DetourMain::DTItemOnDropped(ThisArg, void* charPtr)
 {
 	GetInstance().ItemOnDropped(This, charPtr);
 
 	fnItemOnDropped_.Fn_(This, charPtr);
 }
 
-void DetourMain::DTItemGetItemReplicaInfo(VoidArg, unsigned int& itemRep)
+void DetourMain::DTItemGetItemReplicaInfo(ThisArg, unsigned int& itemRep)
 {
 	GetInstance().ItemGetItemReplicaInfo(This, itemRep);
 
@@ -424,3 +475,16 @@ void* DetourMain::DTItemCreateItem(unsigned int& item)
 	return v;
 }
 
+void DetourMain::DTItemOnPickup(ThisArg, void *character)
+{
+    GetInstance().ItemOnPickup(This);
+
+    fnItemOnPickup_.Fn_(This, character);
+}
+
+bool DetourMain::DTItemIncrementStack(ThisArg, unsigned int a, unsigned int& b)
+{
+    GetInstance().ItemIncrementStack(This, a);
+
+    return fnItemIncrementStack_.Fn_(This, a, b);
+}

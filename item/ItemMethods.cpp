@@ -51,7 +51,7 @@ namespace ItemMethods
 		{
 			itemType = Ring;
 		}
-		else if (replicaInfo._itemName.find("necklaces") != std::string::npos)
+		else if (replicaInfo._itemName.find("necklace") != std::string::npos)
 		{
 			itemType = Amulet;
 		}
@@ -99,21 +99,48 @@ namespace ItemMethods
                  replicaInfo._itemName.find("swords1h") != std::string::npos ||
                  replicaInfo._itemName.find("blunt1h") != std::string::npos)
         {
+            //base type
             itemType = Melee1h;
+
+            //specific
+            if (replicaInfo._itemName.find("axe1h") != std::string::npos)
+            {
+                itemType |= Axe1h;
+            }
+            else if (replicaInfo._itemName.find("swords1h") != std::string::npos)
+            {
+                itemType |= Sword1h;
+            }
+            else
+            { 
+                itemType |= Mace1h;
+            }
+
+            //file named as a 'sword' but it's a dagger
+            if (replicaInfo._itemName.find("b001") != std::string::npos)
+            {
+                itemType = Dagger | Melee1h;
+            }
         }
         else if (replicaInfo._itemName.find("dagger") != std::string::npos)
         {
-            //dagger is also a 1 hander
             itemType = Dagger | Melee1h;
         }
         else if (replicaInfo._itemName.find("caster") != std::string::npos)
         {
-            //scepter is also a 1 hander
             itemType = Scepter | Melee1h;
         }
         else if (replicaInfo._itemName.find("focus") != std::string::npos)
         {
             itemType = Offhand;
+        }
+        else if (replicaInfo._itemName.find("guns1h") != std::string::npos)
+        {
+            itemType = Range1h;
+        }
+        else if (replicaInfo._itemName.find("guns2h") != std::string::npos)
+        {
+            itemType = Range2h;
         }
 
 		return itemType;
@@ -145,8 +172,8 @@ namespace ItemMethods
 			int idx = rand() % list.size();
 			LOGF("PrefixChange: idx[%d] of size=%u, change from: %s to\n\t\t%s", idx, list.size(), replicaInfo._itemPrefix.c_str(), list[idx]);
 			replicaInfo._itemPrefix = list[idx];
-            //no idea the range of the seed (but keep this as is until the game throws error)
-            replicaInfo._itemSeed = (uint32_t)rand() % 0x5FFFF + 0xBFFFFF;
+            replicaInfo._itemSeed = (uint32_t)rand() % (0x7ffffff - 0x1000000) + 0x1000000;
+            //replicaInfo._itemSeed = (uint32_t)rand() % 0x5FFFF + 0xBFFFFF;
 			status = true;
 		}
 
@@ -177,7 +204,8 @@ namespace ItemMethods
 		if (list.size() > 0)
 		{
 			int idx = rand() % list.size();
-			LOGF("SuffixChange: idx[%d] of size=%u, change from: %s to\n\t\t%s", idx, list.size(), replicaInfo._itemSuffix.c_str(), list[idx]);
+			LOGF("SuffixChange: type=0x%X, idx[%d] of size=%u, change from: %s to\n\t\t%s", 
+                itemType, idx, list.size(), replicaInfo._itemSuffix.c_str(), list[idx]);
 			replicaInfo._itemSuffix = list[idx];
 			status = true;
 		}
@@ -185,128 +213,28 @@ namespace ItemMethods
 		return status;
 	}
 
-
-    //kaisan's amulet
-    // records/items/gearaccessories/necklaces/b201c_necklace.dbr";
-    // records/items/gearaccessories/necklaces/b202c_necklace.dbr
-
-    //Ilgorr's eternal vigil medal
-    //[13684]  n=records/items/gearaccessories/medals/b006b_medal.dbr
-
-    //garboyle gaze - cold dmg
-    //[15072]  n=records/items/gearhead/b208d_head.dbr
-    
-    //korvan casque - vit dmg
-    //[5776]  n=records/items/gearhead/b203d_head.dbr
-
-    //coerced wraith tome
-    //[25784]  n=records/items/gearweapons/focus/b204f_focus.dbr
+    //-------------------------------------------------------------------------
+    //item swap stuff
+    //-------------------------------------------------------------------------
 
     bool SwapItem(int id, ItemReplicaInfo &replicaInfo)
     {
 		unsigned itemType = GetItemType(replicaInfo);
 
-        for (unsigned i = 0; i < swapList.size(); ++i)
+        for (unsigned i = 0; i < itemSwapList.size(); ++i)
         {
-            if (swapList[i]->id_ == id)
+            if (itemSwapList[i].id == id)
             {
-                for (int j = 0; j < swapList[i]->size_; ++j)
+                replicaInfo._itemName = itemSwapList[i].name;
+                
+                if (itemSwapList[i].clrAffix)
                 {
-                    if (swapList[i]->arrayItems_[j].mask_ & itemType)
-                    {
-                        replicaInfo._itemName = swapList[i]->arrayItems_[j].name_;
-                        replicaInfo._itemPrefix = "";
-                        replicaInfo._itemSuffix = "";
-
-                        return true;
-                    }
+                    replicaInfo._itemPrefix = "";
+                    replicaInfo._itemSuffix = "";
                 }
+                LOGF("swapped to: %s", replicaInfo._itemName.c_str());
+                return true;
             }
-        }
-
-        if (itemType == Helm)
-        {
-            //replicaInfo._itemPrefix = "records/items/lootaffixes/prefix/b_wpn005_melee2h_e.dbr";
-            //replicaInfo._itemName = "grimleague/items/gearweapons/melee2h/b701_spear2h_rahnd.dbr";
-
-            //pakla - [20952]  n=records/items/gearhead/b104e_head.dbr
-            //gargoyle - [20952]  n=records/items/gearhead/b207e_head.dbr
-            //replicaInfo._itemName = "records/items/gearhead/b207a_head.dbr";
-            //replicaInfo._itemName = "records/items/gearaccessories/medals/b101b_medal.dbr";
-            //replicaInfo._itemName = "records/items/gearlegs/b001b_legs.dbr";
-            //replicaInfo._itemPrefix = "records/items/lootaffixes/prefix/b_wpn006_melee1h_g.dbr";
-            //[14120]  n=records/items/gearaccessories/rings/b103e_ring.dbr
-
-            //[19772]  n=records/items/gearaccessories/necklaces/b202e_necklace.dbr
-            //replicaInfo._itemName = "records/items/gearaccessories/medals/b006e_medal.dbr";
-            //replicaInfo._itemName = "records/items/gearaccessories/waist/b201a_waist.dbr";
-            replicaInfo._itemName = "records/items/gearhead/b203a_head.dbr";
-            //[25612]  n=records/items/gearaccessories/waist/b202d_waist.dbr
-
-            //[27032]  n=records/items/gearaccessories/waist/b201d_waist.dbr
-
-            //replicaInfo._itemSuffix = "records/items/lootaffixes/suffix/b_wpn019_melee1h_g.dbr";
-
-
-            //[18776]  n=records/items/gearaccessories/medals/b006b_medal.dbr
-
-            //[18396]  n=records/items/gearweapons/swords1h/b003b_sword.dbr
-
-
-            return true;
-        }
-        else if (itemType == Amulet)
-        {
-
-            //records/items/gearaccessories/necklaces/b202e_necklace.dbr
-            replicaInfo._itemName = "records/items/gearaccessories/necklaces/b202e_necklace.dbr";
-
-            return true;
-        }
-        else if (itemType == Medal)
-        {
-            //replicaInfo._itemName = "records/items/gearweapons/shields/b014c_shield.dbr";
-            replicaInfo._itemName = "records/items/gearaccessories/medals/d207_medal.dbr";
-            //
-            //[21308]  n=records/items/gearaccessories/medals/d207_medal.dbr
-
-            //[12932]  n=records/items/gearaccessories/medals/b015c_medal.dbr
-
-            //records/items/gearaccessories/necklaces/b009c_necklace.dbr
-            //[20484]  n=records/items/gearaccessories/medals/b009d_medal.dbr
-
-            //[24660]  n=records/items/gearweapons/shields/b014d_shield.dbr
-
-            //[26672]  n=grimleague/items/gearweapons/blunt1h/b501_groble_icef.dbr
-
-            return true;
-        }
-        else if (itemType == Ring)
-        {
-            //[6248]  n=records/items/gearaccessories/rings/b002b_ring_outlawleader.dbr
-            replicaInfo._itemName = "records/items/gearaccessories/rings/b002_ring_outlawleader.dbr";
-            return true;
-        }
-        else if (itemType == Melee1h)
-        {
-            //[27160]  n=records/items/gearweapons/focus/b015f_focus.dbr
-            //[19556]  n=grimleague/items/gearweapons/swords1h/b01_anoxisd.dbr
-
-            replicaInfo._itemName = "grimleague/items/gearweapons/swords1h/b01_anoxisc.dbr";
-            return true;
-        }
-        else if (itemType == Shield)
-        {
-            //[7992]  n=grimleague/items/gearweapons/shields/b04_skeletons_aetherf.dbr
-            replicaInfo._itemName = "grimleague/items/gearweapons/shields/b04_skeletons_aetherc.dbr";
-            return true;
-        }
-        else if (itemType == Offhand)
-        {
-            //[19552]  n=records/items/gearweapons/focus/b015g_focus.dbr
-            replicaInfo._itemName = "records/items/gearweapons/focus/b015a_focus.dbr";
-
-            return true;
         }
 
 		return false;

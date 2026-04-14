@@ -22,6 +22,10 @@
 //public: unsigned int const __cdecl GAME::Character::GetCharLevel(void)const __ptr64
 #define SYM_OBJECT_GETOBJECTNAME "?GetObjectName@Object@GAME@@QEBAPEBDXZ"
 //"public: char const * __thiscall GAME::Object::GetObjectName(void)const
+#define SYM_ITEM_ONPICKUP "?OnPickup@Item@GAME@@UEAAXPEAVCharacter@2@@Z"
+//public: virtual void __cdecl GAME::Item::OnPickup(class GAME::Character * __ptr64) __ptr64
+#define SYM_ITEM_INCREMENTSTACK "?IncrementStack@Item@GAME@@UEAA_NIAEAI@Z"
+//public: virtual bool __thiscall GAME::Item::IncrementStack(unsigned int,unsigned int &)
 #else
 #define SYM_CHAR_RECEIVE_EXP "?ReceiveExperience@Character@GAME@@QAEXIW4ExperienceSource@Bonus@2@_N@Z"
 //void __thiscall GAME::Character::ReceiveExperience(unsigned int,enum GAME::Bonus::ExperienceSource,bool)
@@ -38,6 +42,11 @@
 #define SYM_CHAR_GETCHARLEVEL "?GetCharLevel@Character@GAME@@QBE?BIXZ"
 //public: unsigned int const __cdecl GAME::Character::GetCharLevel(void)const __ptr64
 #define SYM_OBJECT_GETOBJECTNAME "?GetObjectName@Object@GAME@@QBEPBDXZ"
+//public: virtual bool __thiscall GAME::Item::IncrementStack(unsigned int,unsigned int &)
+#define SYM_ITEM_ONPICKUP "?OnPickup@Item@GAME@@UAEXPAVCharacter@2@@Z"
+//public: virtual void __cdecl GAME::Item::OnPickup(class GAME::Character * __ptr64) __ptr64
+#define SYM_ITEM_INCREMENTSTACK "?IncrementStack@Item@GAME@@UAE_NIAAI@Z"
+//public: virtual bool __thiscall GAME::Item::IncrementStack(unsigned int,unsigned int &)
 #endif
 
 //=============================================================================
@@ -52,9 +61,9 @@ extern "C"
 //=============================================================================
 typedef void(__thiscall *VoidFn)();
 #ifdef X64
-#define VoidArg void *This
+#define ThisArg void *This
 #else					
-#define VoidArg void *This, void*
+#define ThisArg void *This, void*
 #endif
 
 struct DetourFnData
@@ -130,15 +139,19 @@ private:
 	void ItemGetItemReplicaInfo(void* This, unsigned int &refItemRep);
     bool ItemCreateItem(unsigned int&);
 	void GetObjectName(void* obj, std::string &name);
+    bool ItemIncrementStack(void* obj, unsigned int&);
+    void ItemOnPickup(void *item);
 
 public:
     //static fns
-	static void __fastcall DTCharReceiveExp(VoidArg, unsigned int, unsigned int, bool);
-	static void __fastcall DTFactionAdjustValue(VoidArg, unsigned int, float, bool);
+	static void __fastcall DTCharReceiveExp(ThisArg, unsigned int, unsigned int, bool);
+	static void __fastcall DTFactionAdjustValue(ThisArg, unsigned int, float, bool);
 	static bool __fastcall DTCanBePlacedInXferStash(void*);
-	static void __fastcall DTItemOnDropped(VoidArg, void*);
-	static void __fastcall DTItemGetItemReplicaInfo(VoidArg, unsigned int&);
+	static void __fastcall DTItemOnDropped(ThisArg, void*);
+	static void __fastcall DTItemGetItemReplicaInfo(ThisArg, unsigned int&);
 	static void* __cdecl DTItemCreateItem(unsigned int&);
+    static bool __fastcall DTItemIncrementStack(ThisArg, unsigned int, unsigned int&);
+    static void __fastcall DTItemOnPickup(ThisArg, void *character);
 
 private:
     // static vars
@@ -152,9 +165,12 @@ private:
 	int oneDropDupe_;
 	int prefixChange_;
 	int suffixChange_;
+    int randSeed_;
 
 	void *itemDropped_;
 	void *itemReplica_;
+
+    std::string pickedUpItemName_;
 
     // static fn vars
 	static ThisFunc<void, void*, unsigned int, unsigned int, bool> fnCharReceiveExp_;
@@ -165,6 +181,8 @@ private:
     static CdeclFunc<void*, unsigned int&> fnFnItemCreateItem_;
 	static ThisFunc<unsigned int, void*> fnCharGetCharLevel_;
     static ThisFunc<char const*, void*> fnObjectGetObjectName_;
+    static ThisFunc<void, void*, void*> fnItemOnPickup_;
+    static ThisFunc<bool, void*, unsigned int, unsigned int&> fnItemIncrementStack_;
 
 };
 

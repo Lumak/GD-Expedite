@@ -281,7 +281,12 @@ int main(int argc, char *argv[])
                 CallRemoteExportFn(dwProcessId, remoteProcAddr, is64BitProcess, TYPE_AFFIX_TYPE, options.affixTypeList[i]);
             }
         }
-	}
+        if (options.randSeedChange != TYPE_DEFAULT_VALUE)
+        {
+            printf("seed change option=%d\n", options.randSeedChange);
+            CallRemoteExportFn(dwProcessId, remoteProcAddr, is64BitProcess, TYPE_RAND_SEED, options.randSeedChange);
+        }
+    }
 
 	return 0;
 }

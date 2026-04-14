@@ -1,3 +1,5 @@
+//[11852]  p=records/items/lootaffixes/prefix/b_ar015_ar_b.dbr
+
 const ItemLvlName incorruptTable[6]
 {
 	5, "records/items/lootaffixes/prefix/b_ar018_je.dbr",
@@ -213,7 +215,8 @@ const ItemAffix prefixImperviousPiercePoison
     GeneratStat, AllJewelry | Belt | Jacket | Shoulder, 6, imperviousPiercePoisonTable
 };
 
-//consecrated - all armor, all jewelry, belts
+//consecrated - hp, vit/slow res
+//all armor, all jewelry, belts
 const ItemLvlName consecratedTable[6]
 {
 	5, "records/items/lootaffixes/prefix/b_ar015_ar.dbr",
@@ -489,23 +492,11 @@ const ItemAffix prefixSuperchargedShield
     AetherDamage, Shield, 6, SuperchargedShield
 };
 
-//vit resist
+//preserved - vit resist
+//*note* removing this as this is only a magic affix and better to use Consecurated with hp, vit/slow resist
 //records/items/lootaffixes/prefix/ad016a_res_life_04.dbr
-const ItemLvlName PreservingTable[6]
-{
-    5, "records/items/lootaffixes/prefix/ad016a_res_life_01.dbr",
-    18, "records/items/lootaffixes/prefix/ad016a_res_life_02.dbr",
-    39, "records/items/lootaffixes/prefix/ad016a_res_life_03.dbr",
-    55, "records/items/lootaffixes/prefix/ad016a_res_life_04.dbr",
-    75, "records/items/lootaffixes/prefix/ad016a_res_life_05.dbr",
-    90, "records/items/lootaffixes/prefix/ad016a_res_life_06.dbr",
-};
 
-const ItemAffix prefixPreserving
-{
-    GeneratStat, Helm | Gloves | Pants | Boots, 6, PreservingTable
-};
-
+//magestorm
 //[17488]  p=records/items/lootaffixes/prefix/b_ar104_ar_f.dbr
 const ItemLvlName Magestorm[6]
 {
@@ -980,6 +971,21 @@ const ItemAffix prefixWitchHunters
     PoisAcidDamage | VitalityDamage | DefenseType, AllArmorNoBelt | Medal | Dagger | Scepter, 1, WitchHunters //only show as having 1 record
 };
 
+//witchblade's - +2 cadence, +2 possession, phys/acid dmg, 4%-7% hp, petrify res
+//all armor no belt, dag, scepters, medals
+//[17960]  p=records/items/lootaffixes/prefix/b_class002_a03.dbr
+const ItemLvlName Witchblades[3]
+{
+    90, "records/items/lootaffixes/prefix/b_class002_a03.dbr",
+    90, "records/items/lootaffixes/prefix/b_class002_a03.dbr",
+    90, "records/items/lootaffixes/prefix/b_class002_a03.dbr",
+};
+
+const ItemAffix prefixWitchblades
+{
+    PoisAcidDamage | PhysicalDamage, AllArmorNoBelt | Medal | Dagger | Scepter, 1, WitchHunters //only show as having 1 record
+};
+
 //warlock's - +2 blood of dreeg, +2 albrecht's aether ray, aeth/chaos dmg, 5% def, elem resist
 //all armor no belt, dag, scepters, medals
 //[23560]  p=records/items/lootaffixes/prefix/b_class009_a02.dbr
@@ -1204,7 +1210,7 @@ const ItemAffix prefixBlademasters
 //[7816]  p=records/items/lootaffixes/prefix/b_class033_a03.dbr
 //***NOTE*** verify trickster's prefix assessment hold true for this record
 
-//interrogator's - +3 word of renewal (inquisitor), elem dmg, skill cooldown reduction
+//interrogator's - +3 word of renewal (inquisitor), elem/pierce/burn/frost/elect dmg, skill cooldown reduction
 //helm, dag, scepters, medals
 //[11300]  p=records/items/lootaffixes/prefix/b_class035_inquisitor01_je_b.dbr
 
@@ -1235,7 +1241,7 @@ const ItemLvlName Wep1hThunderstruck[7]
 
 const ItemAffix prefixWep1hThunderstruck
 {
-    LightningDamage, Melee1h, 7, Wep1hThunderstruck
+    LightningDamage, Melee1h | Range1h, 7, Wep1hThunderstruck
 };
 
 //skyfallen - +2 savagery, lightn dmg, offen
@@ -1254,7 +1260,7 @@ const ItemLvlName Wep1hSkyfallen[7]
 
 const ItemAffix prefixWep1hSkyfallen
 {
-    LightningDamage, Melee1h, 7, Wep1hSkyfallen
+    LightningDamage, Melee1h | Range1h, 7, Wep1hSkyfallen
 };
 
 
@@ -1274,7 +1280,7 @@ const ItemLvlName Wep1hOfficers[7]
 
 const ItemAffix prefixWep1hOfficers
 {
-    LightningDamage | ColdDamage | FireDamage | PhysicalDamage, Melee1h, 7, Wep1hOfficers
+    AllDamage, Melee1h | Range1h, 7, Wep1hOfficers
 };
 
 //frostborn - cold, cold/frost% dmg, def, freeze res
@@ -1293,7 +1299,7 @@ const ItemLvlName Wep1hFrostborn[7]
 
 const ItemAffix prefixWep1hFrostborn
 {
-    ColdDamage, Melee1h, 7, Wep1hFrostborn
+    ColdDamage, Melee1h | Range1h, 7, Wep1hFrostborn
 };
 
 //glacial - frost, cold/frost% dmg, offen
@@ -1312,7 +1318,7 @@ const ItemLvlName Wep1hGlacial[7]
 
 const ItemAffix prefixWep1hGlacial
 {
-    ColdDamage,  Melee1h, 7, Wep1hGlacial
+    ColdDamage,  Melee1h | Range1h, 7, Wep1hGlacial
 };
 
 //hellfire
@@ -1331,7 +1337,7 @@ const ItemLvlName Wep1hHellfire[7]
 
 const ItemAffix prefixWep1hHellfire
 {
-    FireDamage,  Melee1h, 7, Wep1hHellfire
+    FireDamage,  Melee1h | Range1h, 7, Wep1hHellfire
 };
 
 //earthbound
@@ -1351,7 +1357,7 @@ const ItemLvlName Wep1hEarthbound[7]
 //no fire dmg but has vire's might for oathkeeper, hence, adding in fire
 const ItemAffix prefixWWep1hEarthbound
 {
-    PhysicalDamage | FireDamage,  Melee1h, 7, Wep1hEarthbound
+    PhysicalDamage | FireDamage,  Melee1h | Range1h, 7, Wep1hEarthbound
 };
 
 //bloodthirsty - +2 circle of slaughter, %atk converted to health, flat bleed, bleed+duration%, atk sped
@@ -1371,7 +1377,7 @@ const ItemLvlName Wep1hBloodthirsty[7]
 //no fire dmg but has vire's might for oathkeeper, hence, adding in fire
 const ItemAffix prefixWep1hBloodthirsty
 {
-    BleedDamage,  Melee1h, 7, Wep1hBloodthirsty
+    BleedDamage,  Melee1h | Range1h, 7, Wep1hBloodthirsty
 };
 
 //magestorm - +2 lightning tether, lightn/aether dmg
@@ -1391,7 +1397,7 @@ const ItemLvlName Wep1hMagestorm[7]
 //no fire dmg but has vire's might for oathkeeper, hence, adding in fire
 const ItemAffix prefixWep1hMagestorm
 {
-    AetherDamage | LightningDamage,  Melee1h, 7, Wep1hMagestorm
+    AetherDamage | LightningDamage,  Melee1h | Range1h, 7, Wep1hMagestorm
 };
 
 //sinister
@@ -1411,7 +1417,7 @@ const ItemLvlName Wep1hSinister[7]
 //no fire dmg but has vire's might for oathkeeper, hence, adding in fire
 const ItemAffix prefixWep1hSinister
 {
-    PierceDamage,  Melee1h, 7, Wep1hSinister
+    PierceDamage,  Melee1h | Range1h, 7, Wep1hSinister
 };
 
 //heart piercing
@@ -1431,7 +1437,7 @@ const ItemLvlName Wep1hHeartPiercing[7]
 //no fire dmg but has vire's might for oathkeeper, hence, adding in fire
 const ItemAffix prefixWep1hHeartPiercing
 {
-    PierceDamage,  Melee1h, 7, Wep1hHeartPiercing
+    PierceDamage,  Melee1h | Range1h, 7, Wep1hHeartPiercing
 };
 
 //eldritch
@@ -1451,7 +1457,276 @@ const ItemLvlName Wep1hEldritch[7]
 //no fire dmg but has vire's might for oathkeeper, hence, adding in fire
 const ItemAffix prefixWep1hEldritch
 {
-    VitalityDamage | PoisAcidDamage,  Melee1h, 7, Wep1hEldritch
+    VitalityDamage | PoisAcidDamage,  Melee1h | Range1h, 7, Wep1hEldritch
+};
+
+//demonic
+//wep1h
+//[7256]  p=records/items/lootaffixes/prefix/b_wpn008_melee1h_b.dbr
+const ItemLvlName Wep1hDemonic[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn008_melee1h_a.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn008_melee1h_b.dbr",
+    42, "records/items/lootaffixes/prefix/b_wpn008_melee1h_c.dbr",
+    56, "records/items/lootaffixes/prefix/b_wpn008_melee1h_d.dbr",
+    70, "records/items/lootaffixes/prefix/b_wpn008_melee1h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn008_melee1h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn008_melee1h_g.dbr",
+};
+
+const ItemAffix prefixWep1hDemonic
+{
+    VitalityDamage | ChaosDamage,  Melee1h | Range1h, 7, Wep1hDemonic
+};
+
+//plaguebearer's
+//wep1h, pois and duration, reduce resist by 17
+//[10268]  p=records/items/lootaffixes/prefix/b_wpn004_melee1h_e.dbr
+const ItemLvlName Wep1hPlague[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn004_melee1h_a.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn004_melee1h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn004_melee1h_c.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn004_melee1h_d.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn004_melee1h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn004_melee1h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn004_melee1h_g.dbr",
+};
+
+const ItemAffix prefixWep1hPlague
+{
+    PoisAcidDamage,  Melee1h | Range1h, 7, Wep1hPlague
+};
+
+//relentless -- *note* don't add this to the list because sword, axe, and mace are not enumerated
+// individually and does not seperate dags and scepters from 1h wep
+//wep1h
+//[7916]  p=records/items/lootaffixes/prefix/b_wpn002_melee1h_d.dbr
+//sword, axe, mace, 1hrange
+const ItemLvlName Wep1hRelentless[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn002_melee1h_a.dbr",
+    25, "records/items/lootaffixes/prefix/b_wpn002_melee1h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn002_melee1h_c.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn002_melee1h_d.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn002_melee1h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn002_melee1h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn002_melee1h_g.dbr",
+};
+
+const ItemAffix prefixWep1hRelentless
+{
+    PhysicalDamage, Sword1h | Axe1h | Mace1h | Range1h, 7, Wep1hRelentless
+};
+
+//barbaric 
+//wep1h
+//[11828]  p=records/items/lootaffixes/prefix/b_wpn005_melee1h_d.dbr
+//sword, axe, mace, 1hrange
+const ItemLvlName Wep1hBarbaric[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn005_melee1h_a.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn005_melee1h_b.dbr",
+    40, "records/items/lootaffixes/prefix/b_wpn005_melee1h_c.dbr",
+    54, "records/items/lootaffixes/prefix/b_wpn005_melee1h_d.dbr",
+    67, "records/items/lootaffixes/prefix/b_wpn005_melee1h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn005_melee1h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn005_melee1h_g.dbr",
+};
+
+const ItemAffix prefixWep1hBarbaric
+{
+    PhysicalDamage,  Sword1h | Axe1h | Mace1h | Range1h, 7, Wep1hBarbaric
+};
+
+//hellfire
+//wep2h: burn/fire, phys to fire, offense
+//[15908]  p=records/items/lootaffixes/prefix/b_wpn016_melee2h_a.dbr
+const ItemLvlName Wep2hHellfire[7]
+{
+    22, "records/items/lootaffixes/prefix/b_wpn016_melee2h_a.dbr",
+    35, "records/items/lootaffixes/prefix/b_wpn016_melee2h_b.dbr",
+    46, "records/items/lootaffixes/prefix/b_wpn016_melee2h_c.dbr",
+    60, "records/items/lootaffixes/prefix/b_wpn016_melee2h_d.dbr",
+    74, "records/items/lootaffixes/prefix/b_wpn016_melee2h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn016_melee2h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn016_melee2h_g.dbr",
+};
+
+const ItemAffix prefixWep2hHellfire
+{
+    FireDamage,  Melee2h | Range2h, 7, Wep2hHellfire
+};
+
+//eldritch
+//wep2h: vit, phys to vit, poison, +4 righteous ferver
+//[15908]  p=records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr
+const ItemLvlName Wep2hEldritch[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr",
+    25, "records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn011_melee2h_b.dbr",
+};
+
+const ItemAffix prefixWep2hEldritch
+{
+    VitalityDamage,  Melee2h | Range2h, 7, Wep2hEldritch
+};
+
+//rimefrost
+//wep2h: cold/frost, phys to cold, cast speed
+//[272]  p=records/items/lootaffixes/prefix/b_wpn025_melee2h_a.dbr
+const ItemLvlName Wep2hRimefrost[7]
+{
+    22, "records/items/lootaffixes/prefix/b_wpn025_melee2h_a.dbr",
+    35, "records/items/lootaffixes/prefix/b_wpn025_melee2h_b.dbr",
+    46, "records/items/lootaffixes/prefix/b_wpn025_melee2h_c.dbr",
+    60, "records/items/lootaffixes/prefix/b_wpn025_melee2h_d.dbr",
+    74, "records/items/lootaffixes/prefix/b_wpn025_melee2h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn025_melee2h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn025_melee2h_g.dbr",
+};
+
+const ItemAffix prefixWep2hRimefrost
+{
+    ColdDamage,  Melee2h | Range2h, 7, Wep2hRimefrost
+};
+
+//glacial
+//wep2h: cold, +4 frozen core
+//[272]  p=records/items/lootaffixes/prefix/b_wpn023_melee2h_b.dbr
+const ItemLvlName Wep2hGlacial[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn023_melee2h_a.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn023_melee2h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn023_melee2h_c.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn023_melee2h_d.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn023_melee2h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn023_melee2h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn023_melee2h_g.dbr",
+};
+
+const ItemAffix prefixWep2hGlacial
+{
+    ColdDamage,  Melee2h | Range2h, 7, Wep2hGlacial
+};
+
+//relentless
+//wep2h: phys, attk speed, +4 cadence
+//[272]  p=records/items/lootaffixes/prefix/b_wpn002_melee2h_c.dbr
+const ItemLvlName Wep2hRelentless[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn002_melee2h_a.dbr",
+    25, "records/items/lootaffixes/prefix/b_wpn002_melee2h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn002_melee2h_c.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn002_melee2h_d.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn002_melee2h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn002_melee2h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn002_melee2h_g.dbr",
+};
+
+const ItemAffix prefixWep2hRelentless
+{
+    PhysicalDamage,  Melee2h | Range2h, 7, Wep2hRelentless
+};
+
+//infernal
+//wep2h: fire dmg, +4 blackwater cocktail
+//[272]  p=records/items/lootaffixes/prefix/b_wpn009_melee2h_b.dbr
+const ItemLvlName Wep2hInfernal[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn009_melee2h_a.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn009_melee2h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn009_melee2h_c.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn009_melee2h_d.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn009_melee2h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn009_melee2h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn009_melee2h_g.dbr",
+};
+
+const ItemAffix prefixWep2hInfernal
+{
+    FireDamage,  Melee2h | Range2h, 7, Wep2hInfernal
+};
+
+//barbaric
+//wep2h: phys dmg, 85 hp, attk speed
+//[272]  p=records/items/lootaffixes/prefix/b_wpn005_melee2h_c.dbr
+const ItemLvlName Wep2hBarbaric[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn005_melee2h_a.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn005_melee2h_b.dbr",
+    40, "records/items/lootaffixes/prefix/b_wpn005_melee2h_c.dbr",
+    54, "records/items/lootaffixes/prefix/b_wpn005_melee2h_d.dbr",
+    67, "records/items/lootaffixes/prefix/b_wpn005_melee2h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn005_melee2h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn005_melee2h_g.dbr",
+};
+
+const ItemAffix prefixWep2hBarbaric
+{
+    PhysicalDamage,  Melee2h | Range2h, 7, Wep2hBarbaric
+};
+
+//magestorm
+//wep2h: lightning/aether dmg, 85 hp, attk speed
+//[272]  p=records/items/lootaffixes/prefix/b_wpn105_melee2h_b.dbr
+const ItemLvlName Wep2hMagestorm[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn105_melee2h_a.dbr",
+    26, "records/items/lootaffixes/prefix/b_wpn105_melee2h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn105_melee2h_c.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn105_melee2h_d.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn105_melee2h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn105_melee2h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn105_melee2h_g.dbr",
+};
+
+const ItemAffix prefixWep2hMagestorm
+{
+    LightningDamage | AetherDamage,  Melee2h | Range2h, 7, Wep2hMagestorm
+};
+
+//demonic
+//wep2h: chaos/vit dmg, 7% offense
+//[272]  p=records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr
+const ItemLvlName Wep2hDemonic[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr",
+    42, "records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr",
+    56, "records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr",
+    70, "records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn008_melee2h_b.dbr",
+};
+
+const ItemAffix prefixWep2hDemonic
+{
+    ChaosDamage | VitalityDamage,  Melee2h | Range2h, 7, Wep2hDemonic
+};
+
+//Plaguebearer
+//wep2h: pois/acid dmg, reduce resist
+//[272]  p=records/items/lootaffixes/prefix/b_wpn004_melee2h_c.dbr
+const ItemLvlName Wep2hPlaguebearer[7]
+{
+    5, "records/items/lootaffixes/prefix/b_wpn004_melee2h_b.dbr",
+    24, "records/items/lootaffixes/prefix/b_wpn004_melee2h_b.dbr",
+    41, "records/items/lootaffixes/prefix/b_wpn004_melee2h_b.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn004_melee2h_b.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn004_melee2h_b.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn004_melee2h_b.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn004_melee2h_b.dbr",
+};
+
+const ItemAffix prefixWep2hPlaguebearer
+{
+    PoisAcidDamage,  Melee2h | Range2h, 7, Wep2hPlaguebearer
 };
 
 //bileridden
@@ -1511,6 +1786,43 @@ const ItemAffix prefixOffhandSandstorm
     ElementalDamage,  Offhand, 6, OffhandSandstorm
 };
 
+//wraithbound
+//daggers, scepters, medals, chest
+//[9976]  p = records/items/lootaffixes/prefix/b_wpn104_melee1h_c.dbr
+const ItemLvlName prefixWepWraithbound[7]
+{
+     5, "records/items/lootaffixes/prefix/b_wpn104_melee1h_a.dbr",
+    26, "records/items/lootaffixes/prefix/b_wpn104_melee1h_b.dbr",
+    46, "records/items/lootaffixes/prefix/b_wpn104_melee1h_c.dbr",
+    55, "records/items/lootaffixes/prefix/b_wpn104_melee1h_d.dbr",
+    68, "records/items/lootaffixes/prefix/b_wpn104_melee1h_e.dbr",
+    82, "records/items/lootaffixes/prefix/b_wpn104_melee1h_f.dbr",
+    92, "records/items/lootaffixes/prefix/b_wpn104_melee1h_g.dbr",
+};
+
+const ItemAffix prefixWraithbound
+{
+    PetType,  Dagger | Scepter | Medal | Jacket, 7, prefixWepWraithbound
+};
+
+//hellhound
+//offhand - 4% spirit, 4% offensive, +2 sumnmon hellhound
+//[17716]  p=records/items/lootaffixes/prefix/b_sh006_b.dbr
+const ItemLvlName OffhandHoundmaster[6]
+{
+    20, "records/items/lootaffixes/prefix/b_sh006_a.dbr",
+    46, "records/items/lootaffixes/prefix/b_sh006_b.dbr",
+    60, "records/items/lootaffixes/prefix/b_sh006_c.dbr",
+    74, "records/items/lootaffixes/prefix/b_sh006_d.dbr",
+    82, "records/items/lootaffixes/prefix/b_sh006_e.dbr",
+    92, "records/items/lootaffixes/prefix/b_sh006_f.dbr",
+};
+
+//no fire dmg but has vire's might for oathkeeper, hence, adding in fire
+const ItemAffix prefixOffhandHoundmaster
+{
+    PetType,  Offhand, 6, OffhandHoundmaster
+};
 
 //thunderstruck
 //offhand
@@ -1568,7 +1880,6 @@ const std::vector<const ItemAffix*> prefixList =
     &prefixGlacialShield,
     &prefixSuperchargedShield,
 
-    &prefixPreserving,
     &prefixMagestorm,
     &prefixRampage,
     &prefixImposing,
@@ -1584,6 +1895,7 @@ const std::vector<const ItemAffix*> prefixList =
     &prefixDruids,
     &prefixDervishs,
     &prefixWitchHunters,
+    &prefixWitchblades,
     &prefixHeretics,
     &prefixReapers,
     &prefixPurifiers,
@@ -1622,9 +1934,27 @@ const std::vector<const ItemAffix*> prefixList =
     &prefixWep1hSinister,
     &prefixWep1hHeartPiercing,
     &prefixWep1hEldritch,
+    &prefixWep1hDemonic,
+    &prefixWep1hPlague,
+    &prefixWep1hRelentless,
+    &prefixWep1hBarbaric,
+
+    &prefixWep2hHellfire,
+    &prefixWep2hEldritch,
+    &prefixWep2hPlaguebearer,
+    &prefixWep2hGlacial,
+    &prefixWep2hRelentless,
+    &prefixWep2hInfernal,
+    &prefixWep2hBarbaric,
+    &prefixWep2hMagestorm,
+    &prefixWep2hDemonic,
+    &prefixWep2hPlaguebearer,
 
     &prefixOffhandBileridden,
     &prefixOffhandDestroyers,
-    &prefixOffhandSandstorm
+    &prefixOffhandSandstorm,
+
+    &prefixWraithbound,
+    &prefixOffhandHoundmaster
 };
 

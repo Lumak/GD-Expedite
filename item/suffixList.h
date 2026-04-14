@@ -357,7 +357,7 @@ const ItemAffix suffixofInsight
 //it has phys/vit dmg but makes this general stat bc of aether resist
 const ItemLvlName ofSoulWarding[6]
 {
-	5, "records/items/lootaffixes/suffix/b_ar103_ar_a.dbr",
+	5,  "records/items/lootaffixes/suffix/b_ar103_ar_a.dbr",
 	30, "records/items/lootaffixes/suffix/b_ar103_ar_b.dbr",
 	50, "records/items/lootaffixes/suffix/b_ar103_ar_c.dbr",
 	68, "records/items/lootaffixes/suffix/b_ar103_ar_d.dbr",
@@ -378,9 +378,8 @@ const ItemAffix suffixOfSoulWarding
 //all armor, all jewelry
 //[8172]  s=records/items/lootaffixes/suffix/b_ar047_ar_b.dbr
 //[18936]  s=records/items/lootaffixes/suffix/b_ar047_ar_e.dbr
-const ItemLvlName OfBlightArmJewel[6]
+const ItemLvlName OfBlightArmJewel[5]
 {
-    5, "records/items/lootaffixes/suffix/b_ar103_ar.dbr",
     35, "records/items/lootaffixes/suffix/b_ar047_ar_b.dbr",
     50, "records/items/lootaffixes/suffix/b_ar047_ar_c.dbr",
     68, "records/items/lootaffixes/suffix/b_ar047_ar_d.dbr",
@@ -390,7 +389,7 @@ const ItemLvlName OfBlightArmJewel[6]
 
 const ItemAffix suffixOfBlightArmJewel
 {
-    PoisAcidDamage, AllJewelry | AllArmorNoBelt | Belt, 6, OfBlightArmJewel
+    PoisAcidDamage, AllJewelry | AllArmorNoBelt | Belt, 5, OfBlightArmJewel
 };
 
 //of the cabal (jewelry)
@@ -521,7 +520,7 @@ const ItemAffix suffixOfKings
 };
 
 //of arcane winds - pants
-const ItemLvlName ofArcaneWinds[6]
+const ItemLvlName ofArcaneWindsPants[6]
 {
 	5, "records/items/lootaffixes/suffix/b_ar061_ar.dbr",
 	34, "records/items/lootaffixes/suffix/b_ar061_ar_b.dbr",
@@ -531,9 +530,25 @@ const ItemLvlName ofArcaneWinds[6]
 	92, "records/items/lootaffixes/suffix/b_ar061_ar_f.dbr",
 };
 
-const ItemAffix suffixOfArcaneWinds
+const ItemAffix suffixOfArcaneWindsPants
 {
-	GeneratStat, Pants, 6, ofArcaneWinds
+	GeneratStat, Pants, 6, ofArcaneWindsPants
+};
+//of arcane winds - boots
+//[18448]  s=records/items/lootaffixes/suffix/b_ar056_ar_b.dbr
+const ItemLvlName ofArcaneWindsBoots[6]
+{
+    5, "records/items/lootaffixes/suffix/b_ar056_ar.dbr",
+    34, "records/items/lootaffixes/suffix/b_ar056_ar_b.dbr",
+    52, "records/items/lootaffixes/suffix/b_ar056_ar_c.dbr",
+    72, "records/items/lootaffixes/suffix/b_ar056_ar_d.dbr",
+    82, "records/items/lootaffixes/suffix/b_ar056_ar_e.dbr",
+    92, "records/items/lootaffixes/suffix/b_ar056_ar_f.dbr",
+};
+
+const ItemAffix suffixOfArcaneWindsBoots
+{
+    GeneratStat, Boots, 6, ofArcaneWindsBoots
 };
 
 //of the flesh hulk - all armor no belt
@@ -1056,7 +1071,7 @@ const ItemAffix suffixOfTheUntamedJewel
 };
 
 //-------------------------------------
-//1hwep
+//1h wep
 //-------------------------------------
 //of ferocity - +2 savagery, lightn dmg, offense, attk/movement spd
 //swords, axes, maces, 1h-ranged, scepters
@@ -1075,11 +1090,11 @@ const ItemLvlName OfFerocity[7]
 
 const ItemAffix suffixWep1hOfFerocity
 {
-    LightningDamage, Melee1h, 7, OfFerocity
+    LightningDamage, Melee1h | Range1h, 7, OfFerocity
 };
 
 //of shattering - +2 olexra's flash frz, cold, cold/frost% dmg, attk spd
-//all 1h wep
+//1h wep
 //[23220]  s=records/items/lootaffixes/suffix/b_wpn019_melee1h_g.dbr
 const ItemLvlName OfShattering[7]
 {
@@ -1094,11 +1109,11 @@ const ItemLvlName OfShattering[7]
 
 const ItemAffix suffixWep1hOfShattering
 {
-    ColdDamage, Melee1h, 7, OfShattering
+    ColdDamage, Melee1h | Range1h, 7, OfShattering
 };
 
 //of torrents - +2 storm totem, lightn dmg, crit dmg, cast sped
-//all 1h wep
+//1h wep
 //[23220]  s=records/items/lootaffixes/suffix/b_wpn018_melee1h_g.dbr
 const ItemLvlName OfTorrents[7]
 {
@@ -1113,7 +1128,7 @@ const ItemLvlName OfTorrents[7]
 
 const ItemAffix suffixWep1hOfTorrents
 {
-    LightningDamage, Melee1h | Dagger, 7, OfTorrents
+    LightningDamage, Melee1h | Range1h, 7, OfTorrents
 };
 
 //of wildfire
@@ -1132,7 +1147,7 @@ const ItemLvlName OfWildfire[7]
 
 const ItemAffix suffixWep1hOfWildfire
 {
-    FireDamage, Melee1h, 7, OfWildfire
+    FireDamage, Melee1h | Range1h, 7, OfWildfire
 };
 
 //of conflagration
@@ -1151,7 +1166,7 @@ const ItemLvlName OfConflagration[7]
 
 const ItemAffix suffixWep1hOfConflagration
 {
-    FireDamage, Melee1h, 7, OfConflagration
+    FireDamage, Melee1h | Range1h, 7, OfConflagration
 };
 
 //of the flamecaller
@@ -1159,17 +1174,36 @@ const ItemAffix suffixWep1hOfConflagration
 //[25472]  s=records/items/lootaffixes/suffix/b_wpn032_melee1h_b.dbr
 const ItemLvlName OfFlamecaller[6]
 {
-    35, "records/items/lootaffixes/suffix/b_wpn032_melee1h_a.dbr",
-    48, "records/items/lootaffixes/suffix/b_wpn032_melee1h_b.dbr",
-    60, "records/items/lootaffixes/suffix/b_wpn032_melee1h_c.dbr",
-    74, "records/items/lootaffixes/suffix/b_wpn032_melee1h_d.dbr",
-    82, "records/items/lootaffixes/suffix/b_wpn032_melee1h_e.dbr",
-    92, "records/items/lootaffixes/suffix/b_wpn032_melee1h_f.dbr",
+    35, "records/items/lootaffixes/suffix/b_wpn032_melee1h_b.dbr",  
+    48, "records/items/lootaffixes/suffix/b_wpn032_melee1h_c.dbr",
+    60, "records/items/lootaffixes/suffix/b_wpn032_melee1h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn032_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn032_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn032_melee1h_g.dbr",
 };
 
 const ItemAffix suffixWep1hOfFlamecaller
 {
-    FireDamage, Melee1h, 6, OfFlamecaller
+    FireDamage, Melee1h | Range1h, 6, OfFlamecaller
+};
+
+//of slaughter
+//1hwep: pierce/bleed, offense, +2 ring of steel
+//[19248]  s=records/items/lootaffixes/suffix/b_wpn015_melee1h_c.dbr
+const ItemLvlName Wep1hOfSlaughter[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn015_melee1h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn015_melee1h_b.dbr",
+    43, "records/items/lootaffixes/suffix/b_wpn015_melee1h_c.dbr",
+    57, "records/items/lootaffixes/suffix/b_wpn015_melee1h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn015_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn015_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn015_melee1h_g.dbr",
+};
+
+const ItemAffix suffixWep1hOfSlaughter
+{
+    PierceDamage | BleedDamage, Melee1h | Range1h, 6, Wep1hOfSlaughter
 };
 
 //of annihilation - +2 dev swarm, vit/bleed dmg, spirit, cast spd
@@ -1188,7 +1222,7 @@ const ItemLvlName OfAnnihilation[7]
 
 const ItemAffix suffixWep1hOfAnnihilation
 {
-    BleedDamage | VitalityDamage, Melee1h, 7, OfAnnihilation
+    BleedDamage | VitalityDamage, Melee1h | Range1h, 7, OfAnnihilation
 };
 
 
@@ -1208,7 +1242,7 @@ const ItemLvlName OfCruelty[7]
 
 const ItemAffix suffixWep1hOfCruelty
 {
-    BleedDamage, Melee1h, 7, OfCruelty
+    BleedDamage, Melee1h | Range1h, 7, OfCruelty
 };
 
 //of abomination - +2 ascension, phys/aeth dmg, phys, offen
@@ -1227,7 +1261,7 @@ const ItemLvlName OfAbomination[7]
 
 const ItemAffix suffixWep1hOfAbomination
 {
-    AetherDamage | PhysicalDamage, Melee1h, 7, OfAbomination
+    AetherDamage | PhysicalDamage, Melee1h | Range1h, 7, OfAbomination
 };
 
 //of ruthlessness - pierce dmg, dmg to humans, cunning, atk spd
@@ -1246,7 +1280,7 @@ const ItemLvlName OfRuthlessness[7]
 
 const ItemAffix suffixWep1hOfRuthlessness
 {
-    PierceDamage, Melee1h, 7, OfRuthlessness
+    PierceDamage, Melee1h | Range1h, 7, OfRuthlessness
 };
 
 //of the slayer- +2 night chill, pierce/crit, atk spd
@@ -1265,7 +1299,7 @@ const ItemLvlName OfSlayer[7]
 
 const ItemAffix suffixWep1hOfSlayer
 {
-    PierceDamage, Melee1h, 7, OfSlayer
+    PierceDamage, Melee1h | Range1h, 7, OfSlayer
 };
 
 //of voracity - +2 reaping strike, vit dmg, attk to hp, hp, atk spd
@@ -1284,7 +1318,327 @@ const ItemLvlName OfVoracity[7]
 
 const ItemAffix suffixWep1hOfVoracity
 {
-    VitalityDamage, Melee1h, 7, OfVoracity
+    VitalityDamage, Melee1h | Range1h, 7, OfVoracity
+};
+
+//of the cabal
+//1h wep
+//[7256]  s=records/items/lootaffixes/suffix/b_wpn038_melee1h_g.dbr
+const ItemLvlName OfTheCabal1hWep[6]
+{
+    35, "records/items/lootaffixes/suffix/b_wpn038_melee1h_b.dbr",
+    48, "records/items/lootaffixes/suffix/b_wpn038_melee1h_c.dbr",
+    60, "records/items/lootaffixes/suffix/b_wpn038_melee1h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn038_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn038_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn038_melee1h_g.dbr",
+};
+
+const ItemAffix suffixWep1hOfTheCabal
+{
+    VitalityDamage | ChaosDamage, Melee1h | Range1h, 6, OfTheCabal1hWep
+};
+
+//of shattered reality
+//1h wep
+//[7256]  s=records/items/lootaffixes/suffix/b_wpn037_melee1h_g.dbr
+const ItemLvlName OfShatteredReality1hWep[6]
+{
+    35, "records/items/lootaffixes/suffix/b_wpn037_melee1h_b.dbr",
+    48, "records/items/lootaffixes/suffix/b_wpn037_melee1h_c.dbr",
+    60, "records/items/lootaffixes/suffix/b_wpn037_melee1h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn037_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn037_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn037_melee1h_g.dbr",
+};
+
+const ItemAffix suffixWep1hOfShatteredReality
+{
+    AetherDamage | ChaosDamage, Melee1h | Range1h, 6, OfShatteredReality1hWep
+};
+
+//of solael's malice
+//1h wep
+//[7256]  s=records/items/lootaffixes/suffix/b_wpn036_melee1h_g.dbr
+const ItemLvlName OfSolaelsMalice1hWep[6]
+{
+    35, "records/items/lootaffixes/suffix/b_wpn036_melee1h_b.dbr",
+    48, "records/items/lootaffixes/suffix/b_wpn036_melee1h_c.dbr",
+    60, "records/items/lootaffixes/suffix/b_wpn036_melee1h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn036_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn036_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn036_melee1h_g.dbr",
+};
+
+const ItemAffix suffixWep1hOfSolaelsMalice
+{
+    VitalityDamage | ChaosDamage, Melee1h | Range1h, 6, OfSolaelsMalice1hWep
+};
+
+//of the abyss
+//1h wep
+//[22468]  s=records/items/lootaffixes/suffix/b_wpn004_melee1h_a.dbr
+const ItemLvlName OfTheAbyss[7]
+{
+    16, "records/items/lootaffixes/suffix/b_wpn004_melee1h_a.dbr",
+    30, "records/items/lootaffixes/suffix/b_wpn004_melee1h_b.dbr",
+    46, "records/items/lootaffixes/suffix/b_wpn004_melee1h_c.dbr",
+    60, "records/items/lootaffixes/suffix/b_wpn004_melee1h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn004_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn004_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn004_melee1h_g.dbr",
+};
+
+const ItemAffix suffixWep1hOfTheAbyss
+{
+    ChaosDamage, Melee1h | Range1h, 7, OfTheAbyss
+};
+
+//of the venomclaw
+//all 1h wep: acid/pos, offense, attk speed
+//[10268]  s=records/items/lootaffixes/suffix/b_wpn021_melee1h_e.dbr
+const ItemLvlName OfTheVenomClaw[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn021_melee1h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn021_melee1h_b.dbr",
+    41, "records/items/lootaffixes/suffix/b_wpn021_melee1h_c.dbr",
+    55, "records/items/lootaffixes/suffix/b_wpn021_melee1h_d.dbr",
+    70, "records/items/lootaffixes/suffix/b_wpn021_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn021_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn021_melee1h_g.dbr",
+};
+
+const ItemAffix suffixWep1hOfTheVenomClaw
+{
+    PoisAcidDamage, Melee1h | Range1h, 7, OfTheVenomClaw
+};
+
+//of fury
+//wep2h: all dmg, atk/cast speed, offense
+//[15908]  s=records/items/lootaffixes/suffix/b_wpn013_melee2h_b.dbr
+const ItemLvlName Wep2hOfFury[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn013_melee2h_a.dbr",
+    24, "records/items/lootaffixes/suffix/b_wpn013_melee2h_b.dbr",
+    39, "records/items/lootaffixes/suffix/b_wpn013_melee2h_c.dbr",
+    53, "records/items/lootaffixes/suffix/b_wpn013_melee2h_d.dbr",
+    69, "records/items/lootaffixes/suffix/b_wpn013_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn013_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn013_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfFury
+{
+    AllDamage, Melee2h | Range2h, 7, Wep2hOfFury
+};
+
+//of wildfire
+//wep2h: fire dmg, crit, atk/cast speed, +4 flames of ignaffar
+//[272]  s=records/items/lootaffixes/suffix/b_wpn017_melee2h_d.dbr
+const ItemLvlName Wep2hOfWildfire[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn017_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn017_melee2h_b.dbr",
+    39, "records/items/lootaffixes/suffix/b_wpn017_melee2h_c.dbr",
+    53, "records/items/lootaffixes/suffix/b_wpn017_melee2h_d.dbr",
+    68, "records/items/lootaffixes/suffix/b_wpn017_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn017_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn017_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfWildfire
+{
+    FireDamage, Melee2h | Range2h, 7, Wep2hOfWildfire
+};
+
+//of ferocity
+//wep2h: lightning offense, atk speed, movement, +4 savagery
+//[272]  s=records/items/lootaffixes/suffix/b_wpn014_melee2h_c.dbr
+const ItemLvlName Wep2hOfFerocity[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn014_melee2h_a.dbr",
+    24, "records/items/lootaffixes/suffix/b_wpn014_melee2h_b.dbr",
+    40, "records/items/lootaffixes/suffix/b_wpn014_melee2h_c.dbr",
+    56, "records/items/lootaffixes/suffix/b_wpn014_melee2h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn014_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn014_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn014_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfFerocity
+{
+    LightningDamage, Melee2h | Range2h, 7, Wep2hOfFerocity
+};
+
+//of venomclaw
+//wep2h: poison/acid dmg, offense, atk speed, +4 lethal assault
+//[272]  s=records/items/lootaffixes/suffix/b_wpn021_melee2h_d.dbr
+const ItemLvlName Wep2hOfVenomclaw[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn021_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn021_melee2h_b.dbr",
+    41, "records/items/lootaffixes/suffix/b_wpn021_melee2h_c.dbr",
+    50, "records/items/lootaffixes/suffix/b_wpn021_melee2h_d.dbr",
+    70, "records/items/lootaffixes/suffix/b_wpn021_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn021_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn021_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfVenomclaw
+{
+    PoisAcidDamage, Melee2h | Range2h, 7, Wep2hOfVenomclaw
+};
+
+//of annihilation
+//wep2h: vit/bleed dmg, cast speed, +4 devouring swarm
+//[272]  s=records/items/lootaffixes/suffix/b_wpn021_melee2h_d.dbr
+const ItemLvlName Wep2hOfAnnihilation[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn021_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn021_melee2h_b.dbr",
+    41, "records/items/lootaffixes/suffix/b_wpn021_melee2h_c.dbr",
+    50, "records/items/lootaffixes/suffix/b_wpn021_melee2h_d.dbr",
+    70, "records/items/lootaffixes/suffix/b_wpn021_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn021_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn021_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfAnnihilation
+{
+    VitalityDamage | BleedDamage, Melee2h | Range2h, 7, Wep2hOfAnnihilation
+};
+
+//of torrents
+//wep2h: lightning dmg, crit, cast speed, +4 storm totem
+//[272]  s=records/items/lootaffixes/suffix/b_wpn018_melee2h_b.dbr
+const ItemLvlName Wep2hOfTorrents[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn018_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn018_melee2h_b.dbr",
+    41, "records/items/lootaffixes/suffix/b_wpn018_melee2h_c.dbr",
+    55, "records/items/lootaffixes/suffix/b_wpn018_melee2h_d.dbr",
+    70, "records/items/lootaffixes/suffix/b_wpn018_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn018_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn018_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfTorrents
+{
+    LightningDamage, Melee2h | Range2h, 7, Wep2hOfTorrents
+};
+
+//of cruelty
+//wep2h: bleeding dmg, crit, +4 fighting form
+//[272]  s=records/items/lootaffixes/suffix/b_wpn010_melee2h_b.dbr
+const ItemLvlName Wep2hOfCruelty[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn010_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn010_melee2h_b.dbr",
+    40, "records/items/lootaffixes/suffix/b_wpn010_melee2h_c.dbr",
+    54, "records/items/lootaffixes/suffix/b_wpn010_melee2h_d.dbr",
+    70, "records/items/lootaffixes/suffix/b_wpn010_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn010_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn010_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfCruelty
+{
+    BleedDamage, Melee2h | Range2h, 7, Wep2hOfCruelty
+};
+
+//of the slayer
+//wep2h: pierce dmg, crit, attk speed, +4 night's chill
+//[272]  s=records/items/lootaffixes/suffix/b_wpn006_melee2h_a.dbr
+const ItemLvlName Wep2hOfSlayer[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn006_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn006_melee2h_b.dbr",
+    43, "records/items/lootaffixes/suffix/b_wpn006_melee2h_c.dbr",
+    57, "records/items/lootaffixes/suffix/b_wpn006_melee2h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn006_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn006_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn006_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfSlayer
+{
+    PierceDamage, Melee2h | Range2h, 7, Wep2hOfSlayer
+};
+
+//of voracity -- small vit dmg and will fall under general
+//wep2h: vit dmg, attk to health, crit, attk speed, +4 reaping strike
+//[272]  s=records/items/lootaffixes/suffix/b_wpn007_melee2h_b.dbr
+const ItemLvlName Wep2hOfVoracity[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn007_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn007_melee2h_b.dbr",
+    43, "records/items/lootaffixes/suffix/b_wpn007_melee2h_c.dbr",
+    57, "records/items/lootaffixes/suffix/b_wpn007_melee2h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn007_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn007_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn007_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfVoracity
+{
+    GeneratStat | VitalityDamage, Melee2h | Range2h, 7, Wep2hOfVoracity
+};
+
+//of the abomination
+//wep2h: aether/phys dmg, phys, offense +4 ascension
+//[272]  s=records/items/lootaffixes/suffix/b_wpn022_melee2h_b.dbr
+const ItemLvlName Wep2hOfAbomination[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn022_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn022_melee2h_b.dbr",
+    39, "records/items/lootaffixes/suffix/b_wpn022_melee2h_c.dbr",
+    53, "records/items/lootaffixes/suffix/b_wpn022_melee2h_d.dbr",
+    68, "records/items/lootaffixes/suffix/b_wpn022_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn022_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn022_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfAbomination
+{
+    AetherDamage | PhysicalDamage, Melee2h | Range2h, 7, Wep2hOfAbomination
+};
+
+//of blight
+//wep2h: pois/acid/vit dmg, cast speed, offense +4 ravenous earth
+//[272]  s=records/items/lootaffixes/suffix/b_wpn020_melee2h_b.dbr
+const ItemLvlName Wep2hOfBlight[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn020_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn020_melee2h_b.dbr",
+    42, "records/items/lootaffixes/suffix/b_wpn020_melee2h_c.dbr",
+    53, "records/items/lootaffixes/suffix/b_wpn020_melee2h_d.dbr",
+    68, "records/items/lootaffixes/suffix/b_wpn020_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn020_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn020_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfBlight
+{
+    PoisAcidDamage | VitalityDamage, Melee2h | Range2h, 7, Wep2hOfBlight
+};
+
+//of the elements
+//wep2h: elem dmg, attk/cast speed, +4 raging tempest
+//[272]  s=records/items/lootaffixes/suffix/b_wpn024_melee2h_b.dbr
+const ItemLvlName Wep2hOfElements[7]
+{
+    5, "records/items/lootaffixes/suffix/b_wpn024_melee2h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn024_melee2h_b.dbr",
+    39, "records/items/lootaffixes/suffix/b_wpn024_melee2h_c.dbr",
+    53, "records/items/lootaffixes/suffix/b_wpn024_melee2h_d.dbr",
+    68, "records/items/lootaffixes/suffix/b_wpn024_melee2h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn024_melee2h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn024_melee2h_g.dbr",
+};
+
+const ItemAffix suffixWep2hOfElements
+{
+    ElementalDamage, Melee2h | Range2h, 7, Wep2hOfElements
 };
 
 //of rituals
@@ -1382,6 +1736,44 @@ const ItemAffix suffixOffhandOfTorrents
     LightningDamage, Offhand, 7, OffhandOfTorrents
 };
 
+
+//of bestial rage
+//[9976]  s=records/items/lootaffixes/suffix/b_wpn012_melee1h_a.dbr
+const ItemLvlName suffixWepOfBestialRage[7]
+{
+     5, "records/items/lootaffixes/suffix/b_wpn012_melee1h_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_wpn012_melee1h_b .dbr",
+    42, "records/items/lootaffixes/suffix/b_wpn012_melee1h_c.dbr",
+    56, "records/items/lootaffixes/suffix/b_wpn012_melee1h_d.dbr",
+    74, "records/items/lootaffixes/suffix/b_wpn012_melee1h_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_wpn012_melee1h_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_wpn012_melee1h_g.dbr",
+};
+const ItemAffix suffixOfBestialRage
+{
+    PetType, Dagger | Scepter, 7, suffixWepOfBestialRage
+};
+
+//of caged soul
+//offhand
+//[17716]  s=records/items/lootaffixes/suffix/b_sh103_b.dbr
+
+const ItemLvlName suffixOffhandCagedSouls[7]
+{
+     5, "records/items/lootaffixes/suffix/b_sh103_a.dbr",
+    26, "records/items/lootaffixes/suffix/b_sh103_b .dbr",
+    41, "records/items/lootaffixes/suffix/b_sh103_c.dbr",
+    55, "records/items/lootaffixes/suffix/b_sh103_d.dbr",
+    70, "records/items/lootaffixes/suffix/b_sh103_e.dbr",
+    82, "records/items/lootaffixes/suffix/b_sh103_f.dbr",
+    92, "records/items/lootaffixes/suffix/b_sh103_g.dbr",
+};
+const ItemAffix suffixOfCagedSouls
+{
+    PetType, Offhand, 7, suffixOffhandCagedSouls
+};
+
+
 //=====================================
 // list container
 //=====================================
@@ -1419,7 +1811,8 @@ const std::vector<const ItemAffix*> suffixList =
     &suffixOfReptilianResilience,
 	&suffixOfViciousBarbs,
 
-    &suffixOfArcaneWinds,
+    &suffixOfArcaneWindsPants,
+    &suffixOfArcaneWindsBoots,
     &suffixOfFleshHulk,
     &suffixOfDestruction,
     &suffixOfUlzuinsFlame,
@@ -1463,17 +1856,39 @@ const std::vector<const ItemAffix*> suffixList =
     &suffixWep1hOfWildfire,
     &suffixWep1hOfConflagration,
     &suffixWep1hOfFlamecaller,
+    &suffixWep1hOfSlaughter,
     &suffixWep1hOfAnnihilation,
     &suffixWep1hOfCruelty,
     &suffixWep1hOfAbomination,
     &suffixWep1hOfRuthlessness,
     &suffixWep1hOfSlayer,
     &suffixWep1hOfVoracity,
+    &suffixWep1hOfTheCabal,
+    &suffixWep1hOfShatteredReality,
+    &suffixWep1hOfSolaelsMalice,
+    &suffixWep1hOfTheAbyss,
+    &suffixWep1hOfTheVenomClaw,
+
+    &suffixWep2hOfFury,
+    &suffixWep2hOfWildfire,
+    &suffixWep2hOfFerocity,
+    &suffixWep2hOfVenomclaw,
+    &suffixWep2hOfAnnihilation,
+    &suffixWep2hOfTorrents,
+    &suffixWep2hOfCruelty,
+    &suffixWep2hOfSlayer,
+    &suffixWep2hOfVoracity,
+    &suffixWep2hOfAbomination,
+    &suffixWep2hOfBlight,
+    &suffixWep2hOfElements,
 
     &suffixOffhandOfRituals,
     &suffixOffhandOfOracle,
     &suffixOffhandOfDeathschill,
     &suffixOffhandOfAnnihilation,
-    &suffixOffhandOfTorrents
+    &suffixOffhandOfTorrents,
+
+    &suffixOfBestialRage,
+    &suffixOfCagedSouls
 };
 

@@ -10,3 +10,4 @@
 #define TYPE_PREFIX_CHANGE		4
 #define TYPE_SUFFIX_CHANGE		5
 #define TYPE_AFFIX_TYPE         6
+#define TYPE_RAND_SEED          7
