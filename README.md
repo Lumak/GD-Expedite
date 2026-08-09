@@ -10,5 +10,7 @@ Requires CMake and VS 2017 Community
 ## To Debug
 Download DebugView: https://learn.microsoft.com/en-us/sysinternals/downloads/debugview and run it.
 
+## Release Tags
+Aug 9, 26 - Tag v1.3.1 binary release
 ## License
 MIT License
