@@ -11,6 +11,8 @@ Requires CMake and VS 2017 Community
 Download DebugView: https://learn.microsoft.com/en-us/sysinternals/downloads/debugview and run it.
 
 ## Release Tags
-Aug 9, 26 - Tag v1.3.1 binary release
+Aug. 09, 26 - Tag v1.3.1 binary release
+Aug. 29, 26 - Tag v1.3.2 binary release - additional shield affix
+
 ## License
 MIT License
