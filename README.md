@@ -12,6 +12,7 @@ Download DebugView: https://learn.microsoft.com/en-us/sysinternals/downloads/deb
 
 ## Release Tags
 Aug. 09, 26 - Tag v1.3.1 binary release
+
 Aug. 29, 26 - Tag v1.3.2 binary release - additional shield affix
 
 ## License
